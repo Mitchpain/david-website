@@ -6,17 +6,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **davie** - Cinematographer portfolio website for David
 
-This is a static HTML/CSS/JavaScript portfolio showcasing four different design concepts for a cinematographer's website. The site will eventually be connected to a CMS, but currently uses placeholder images from Unsplash. Designed to be hosted on GitHub Pages.
+This is a static HTML/CSS/JavaScript portfolio showcasing five different design concepts for a cinematographer's website. The site will eventually be connected to a CMS, but currently uses placeholder images from Unsplash. Designed to be hosted on GitHub Pages.
 
 ## Project Structure
 
 ```
 davie/
-├── index.html          # Main landing page - navigation to all 4 designs
+├── index.html          # Main landing page - navigation to all 5 designs
 ├── design1.html        # Horizontal scrolling rows (Miles Jay inspired)
 ├── design2.html        # Movie grid with 4 columns (Instagram inspired)
 ├── design3.html        # Full-screen slider with touch navigation
-├── design4.html        # Photobook spread layout (NEEDS REWORK)
+├── design4.html        # Vertical single column with breathing room
+├── design5.html        # Bento grid with asymmetric tiles
 ├── package.json        # Project metadata and scripts
 ├── README.md           # Project documentation and deployment instructions
 └── CLAUDE.md           # This file
@@ -25,8 +26,8 @@ davie/
 ## Design Concepts
 
 ### Design 1: Horizontal Rows
-- **Status:** Complete and approved
-- **Style:** Clean, minimal, white background
+- **Status:** Complete
+- **Style:** Clean, minimal, adapts to light/dark mode
 - **Layout:** Horizontal scrolling rows of cinematic stills, one row per project
 - **Inspiration:** Miles Jay's portfolio
 - **Features:**
@@ -34,10 +35,11 @@ davie/
   - Each project has metadata (title, type, duration)
   - Smooth horizontal scrolling with custom scrollbar
   - Fully responsive (smaller images on mobile)
+  - Light/dark theme support based on system preference
 
 ### Design 2: Movie Grid
 - **Status:** Complete
-- **Style:** Dark theme, Instagram-inspired
+- **Style:** Instagram-inspired, adapts to light/dark mode
 - **Layout:** Each movie gets its own section with a grid of 4 images
 - **Features:**
   - Profile header with stats (projects, frames, festivals)
@@ -46,10 +48,11 @@ davie/
   - Desktop: 4-column grid per movie
   - Mobile: 2x2 grid per movie
   - Each movie section has title + metadata
+  - Light/dark theme support based on system preference
 
 ### Design 3: Full-Screen Slider
 - **Status:** Complete
-- **Style:** Immersive, dark, dramatic
+- **Style:** Immersive, dramatic, adapts to light/dark mode
 - **Layout:** Full-screen slideshow with one project per slide
 - **Features:**
   - Touch/swipe navigation (mobile-friendly)
@@ -59,19 +62,32 @@ davie/
   - Progress bar at bottom
   - Smooth transitions between slides
   - Overlay text with project info
+  - Light/dark theme support based on system preference
 
-### Design 4: Photobook Spread
-- **Status:** NEEDS REWORK (far from perfect)
-- **Style:** Editorial photobook
-- **Layout:** Two-page spreads like an open book
-- **Current Issues:** Layout needs refinement, positioning could be improved
+### Design 4: Vertical Single Column
+- **Status:** Complete
+- **Style:** Ultra-minimal, gallery-like, adapts to light/dark mode
+- **Layout:** One large cinematic image per project, stacked vertically with massive spacing
 - **Features:**
-  - Desktop: Two pages side by side with spine in middle
-  - Mobile: Single page view
-  - Handwritten-style font (Kalam)
-  - Photos arranged organically with rotation
-  - Each spread represents one movie
-  - No Polaroid frames (direct images)
+  - Fixed header with navigation
+  - Each project = 1 hero image (2.35:1 cinematic ratio on desktop, 16:9 on mobile)
+  - Small centered metadata below each image
+  - Tons of whitespace (60vh gaps between projects on desktop)
+  - Clean, focused scroll experience
+  - Light/dark theme support based on system preference
+
+### Design 5: Bento Grid
+- **Status:** Complete
+- **Style:** Architectural, modern minimal, adapts to light/dark mode
+- **Layout:** Asymmetric grid where each movie gets a different-sized tile
+- **Features:**
+  - Mix of portrait, landscape, and square tile formats
+  - Some tiles larger (hero projects), some smaller
+  - Title overlaid on each tile, visible on hover (desktop) or always visible (mobile)
+  - Generous gaps between tiles (Apple/Muji catalog spacing)
+  - Hover reveals metadata (year, type, duration)
+  - Fully responsive (desktop: 12-column grid, tablet: 6-column, mobile: 2-column/single column)
+  - Light/dark theme support based on system preference
 
 ## Development Commands
 
@@ -97,7 +113,8 @@ Each design file has its own structure for projects:
 - **Design 1:** Add new `.project-row` div with `.project-stills` and `.project-info`
 - **Design 2:** Add new `.movie-section` with `.movie-header` and `.movie-grid`
 - **Design 3:** Add new `.slide` div with background image and content
-- **Design 4:** Add new `.spread` with left/right `.page` elements
+- **Design 4:** Add new `.project` div with `.project-image` and `.project-info`
+- **Design 5:** Add new `.tile` div with image and `.tile-info`
 
 ### Replacing Placeholder Images
 
@@ -118,12 +135,10 @@ All designs use these breakpoints:
 
 ## TODO Items
 
-1. **Rework Design 4** - Current photobook layout needs significant improvements
-2. **Add Light/Dark Theme Toggle** - All four designs should support theme switching
-3. **CMS Integration** - Connect to headless CMS (Contentful, Sanity, etc.)
-4. **Project Detail Pages** - Add individual pages for each project
-5. **Contact Form** - Implement contact functionality
-6. **Video Embeds** - Add support for video reels/trailers
+1. **CMS Integration** - Connect to headless CMS (Contentful, Sanity, etc.)
+2. **Project Detail Pages** - Add individual pages for each project
+3. **Contact Form** - Implement contact functionality
+4. **Video Embeds** - Add support for video reels/trailers
 
 ## Design Philosophy
 
@@ -142,4 +157,4 @@ Site is designed to be hosted on GitHub Pages. See README.md for deployment inst
 - Keep designs minimal - avoid over-engineering
 - Prioritize visual impact and responsiveness
 - All text content and images are placeholders
-- Design 4 is incomplete and should be revisited before showing to client
+- All five designs support light/dark theme based on user's system preference
