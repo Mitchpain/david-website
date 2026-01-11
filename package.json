@@ -1,0 +1,10 @@
+{
+  "name": "davie",
+  "version": "1.0.0",
+  "description": "Cinematographer portfolio website with three responsive design concepts",
+  "license": "ISC",
+  "author": "",
+  "scripts": {
+    "start": "python3 -m http.server 8000 || python -m SimpleHTTPServer 8000"
+  }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David - Cinematographer Portfolio Designs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            color: #888;
+            margin-bottom: 4rem;
+        }
+
+        .designs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .design-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 3rem 2rem;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .design-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .design-card:hover {
+            border-color: #fff;
+            transform: translateY(-5px);
+        }
+
+        .design-card:hover::before {
+            opacity: 1;
+        }
+
+        .design-number {
+            font-size: 3rem;
+            font-weight: 100;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .design-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .design-description {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .designs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DAVID</h1>
+        <p class="subtitle">Cinematographer — Portfolio Design Options</p>
+
+        <div class="designs">
+            <a href="design1.html" class="design-card">
+                <div class="design-number">01</div>
+                <div class="design-title">Horizontal Rows</div>
+                <p class="design-description">Inspired by Miles Jay — Cinematic horizontal scrolling rows showcasing project stills</p>
+            </a>
+
+            <a href="design2.html" class="design-card">
+                <div class="design-number">02</div>
+                <div class="design-title">Movie Grid</div>
+                <p class="design-description">Instagram-inspired — Each movie has its own 4-column grid (2x2 on mobile)</p>
+            </a>
+
+            <a href="design3.html" class="design-card">
+                <div class="design-number">03</div>
+                <div class="design-title">Full-Screen Slider</div>
+                <p class="design-description">Immersive — Large format slideshow with swipe & scroll navigation</p>
+            </a>
+
+            <a href="design4.html" class="design-card">
+                <div class="design-number">04</div>
+                <div class="design-title">Photobook Spread</div>
+                <p class="design-description">Editorial — Two-page spreads per movie, like flipping through a photography book</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
