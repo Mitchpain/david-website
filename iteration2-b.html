@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David - Design 02: Movie Grid (Video Version - Sticky)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --grid-bg: #f5f5f5;
+            --profile-gradient-start: #e0e0e0;
+            --profile-gradient-end: #c0c0c0;
+            --button-bg: #000000;
+            --button-text: #ffffff;
+            --button-hover: #333333;
+            --bio-color: #555555;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --text-color: #ffffff;
+                --text-secondary: #666666;
+                --border-color: #222222;
+                --grid-bg: #111111;
+                --profile-gradient-start: #333333;
+                --profile-gradient-end: #555555;
+                --button-bg: #ffffff;
+                --button-text: #000000;
+                --button-hover: #dddddd;
+                --bio-color: #cccccc;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Filter Tabs - Sticky */
+        .filter-tabs {
+            position: sticky;
+            top: 0;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: flex-start;
+            gap: 2rem;
+            background: var(--bg-color);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        @media (min-width: 1000px) {
+            .filter-tabs {
+                padding: 1.5rem 3rem;
+            }
+        }
+
+        .filter-tab {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            color: var(--text-color);
+        }
+
+        /* Movies Container */
+        .movies-container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (min-width: 1000px) {
+            .movies-container {
+                padding: 0 3rem;
+            }
+        }
+
+        .movie-section {
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 1;
+            background: var(--grid-bg);
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+
+        .movie-section:hover .video-container video {
+            filter: blur(3px);
+        }
+
+        .movie-title-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            color: var(--text-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .movie-section:hover .movie-title-overlay {
+            opacity: 1;
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: var(--button-bg);
+            color: var(--button-text);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: var(--button-hover);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .filter-tabs {
+                gap: 1.5rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .video-container {
+                aspect-ratio: 2 / 1;
+            }
+
+            .movie-title-overlay {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-tabs {
+                gap: 1rem;
+            }
+
+            .filter-tab {
+                font-size: 0.7rem;
+            }
+
+            .movie-title-overlay {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="filter-tabs">
+        <a href="#" class="filter-tab active">film</a>
+        <a href="#" class="filter-tab">comercial</a>
+        <a href="#" class="filter-tab">contact</a>
+    </div>
+
+    <div class="movies-container">
+        <!-- Movie 1: Fragments -->
+        <div class="movie-section">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="movie-title-overlay">Fragments</div>
+        </div>
+
+        <!-- Movie 2: Light & Shadow -->
+        <div class="movie-section">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="movie-title-overlay">Light & Shadow</div>
+        </div>
+
+        <!-- Movie 3: Urban Stories -->
+        <div class="movie-section">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="movie-title-overlay">Urban Stories</div>
+        </div>
+
+        <!-- Movie 4: Horizon -->
+        <div class="movie-section">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="movie-title-overlay">Horizon</div>
+        </div>
+
+        <!-- Movie 5: Noir -->
+        <div class="movie-section">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="movie-title-overlay">Noir</div>
+        </div>
+
+        <!-- Movie 6: Momentum -->
+        <div class="movie-section">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="movie-title-overlay">Momentum</div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-button">← BACK TO DESIGNS</a>
+
+    <script>
+        // Lazy loading videos with Intersection Observer
+        const videos = document.querySelectorAll('video');
+
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+
+                if (entry.isIntersecting) {
+                    // Video is visible or about to be visible
+                    if (video.paused) {
+                        video.play().catch(err => {
+                            console.log('Autoplay prevented:', err);
+                        });
+                    }
+                } else {
+                    // Video is out of view - pause to save resources
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                }
+            });
+        }, {
+            // Start loading when video is within 200px of viewport
+            rootMargin: '200px',
+            threshold: 0.1
+        });
+
+        // Observe all videos
+        videos.forEach(video => {
+            videoObserver.observe(video);
+        });
+    </script>
+</body>
+</html>
