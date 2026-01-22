@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragments - David</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --text-color: #ffffff;
+                --text-secondary: #999999;
+                --border-color: #222222;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-color);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-color);
+        }
+
+        /* Main Container - Design 1: Centered/Minimal - One Page */
+        .container {
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            gap: 3rem;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .description {
+                font-size: 0.85rem;
+            }
+
+            .content {
+                text-align: left;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .container {
+                gap: 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .meta {
+                margin-bottom: 1rem;
+            }
+
+            .description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-link">← back</a>
+        <a href="#" class="back-link">contact</a>
+    </div>
+
+    <div class="container">
+        <div class="video-wrapper">
+            <div class="video-container">
+                <iframe src="https://player.vimeo.com/video/491339383?background=1&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1 class="title">Fragments</h1>
+            <div class="meta">2024 · Narrative · 12 min</div>
+            <p class="description">
+                A contemplative exploration of memory and time, following a photographer as she pieces together fragments of her past. Shot on location in Montreal, this short film combines documentary aesthetics with experimental narrative techniques to create an intimate portrait of loss and remembrance.
+            </p>
+        </div>
+    </div>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+</body>
+</html>
