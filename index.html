@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David - Cinematographer Portfolio Designs</title>
+    <title>David - Design 02: Mixed Grid & Video</title>
     <style>
         * {
             margin: 0;
@@ -15,23 +15,29 @@
             --bg-color: #ffffff;
             --text-color: #000000;
             --text-secondary: #666666;
-            --card-bg: #f5f5f5;
-            --card-border: #e0e0e0;
-            --card-hover-border: #000000;
-            --number-color: #cccccc;
-            --gradient-overlay: rgba(0, 0, 0, 0.05);
+            --border-color: #e0e0e0;
+            --grid-bg: #f5f5f5;
+            --profile-gradient-start: #e0e0e0;
+            --profile-gradient-end: #c0c0c0;
+            --button-bg: #000000;
+            --button-text: #ffffff;
+            --button-hover: #333333;
+            --bio-color: #555555;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #000000;
                 --text-color: #ffffff;
-                --text-secondary: #888888;
-                --card-bg: #111111;
-                --card-border: #222222;
-                --card-hover-border: #ffffff;
-                --number-color: #333333;
-                --gradient-overlay: rgba(255, 255, 255, 0.05);
+                --text-secondary: #666666;
+                --border-color: #222222;
+                --grid-bg: #111111;
+                --profile-gradient-start: #333333;
+                --profile-gradient-end: #555555;
+                --button-bg: #ffffff;
+                --button-text: #000000;
+                --button-hover: #dddddd;
+                --bio-color: #cccccc;
             }
         }
 
@@ -39,176 +45,293 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: var(--bg-color);
             color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 300;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
-
-        .subtitle {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            font-weight: 300;
-            color: var(--text-secondary);
-            margin-bottom: 4rem;
-        }
-
-        .designs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Filter Tabs */
+        .filter-tabs {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-color);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: flex-start;
             gap: 2rem;
-            margin-top: 3rem;
         }
 
-        .design-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 3rem 2rem;
+        @media (min-width: 1000px) {
+            .filter-tabs {
+                padding: 1.5rem 3rem;
+            }
+        }
+
+        .filter-tab {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
             text-decoration: none;
-            color: var(--text-color);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
             transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            color: var(--text-color);
+        }
+
+        /* Movies Container */
+        .movies-container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (min-width: 1000px) {
+            .movies-container {
+                padding: 0 3rem;
+            }
+        }
+
+        .movie-section {
             position: relative;
+            cursor: pointer;
+            margin-bottom: 0;
+            display: block;
+            text-decoration: none;
+        }
+
+        /* Video Container Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 1;
+            background: var(--grid-bg);
             overflow: hidden;
         }
 
-        .design-card::before {
-            content: '';
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+
+        .movie-section:hover .video-container video {
+            filter: blur(3px);
+        }
+
+        /* Grid Container Styles */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .grid-item {
+            aspect-ratio: 1 / 1;
+            background: var(--grid-bg);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+
+        .movie-section:hover .grid-item img {
+            filter: blur(3px);
+        }
+
+        /* Title Overlay */
+        .movie-title-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--gradient-overlay) 0%, transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            color: var(--text-color);
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
         }
 
-        .design-card:hover {
-            border-color: var(--card-hover-border);
-            transform: translateY(-5px);
-        }
-
-        .design-card:hover::before {
+        .movie-section:hover .movie-title-overlay {
             opacity: 1;
         }
 
-        .design-number {
-            font-size: 3rem;
-            font-weight: 100;
-            color: var(--number-color);
-            margin-bottom: 1rem;
-        }
-
-        .design-title {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .design-description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .new-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
-            color: #ffffff;
-            padding: 0.5rem 1.2rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            z-index: 1;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
-            }
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .new-badge {
-                background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
-                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .designs {
-                grid-template-columns: 1fr;
+            .filter-tabs {
+                gap: 1.5rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .video-container {
+                aspect-ratio: 2 / 1;
+            }
+
+            .movie-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 4px;
+            }
+
+            .movie-title-overlay {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-tabs {
+                gap: 1rem;
+            }
+
+            .filter-tab {
+                font-size: 0.7rem;
+            }
+
+            .movie-title-overlay {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>DAVID</h1>
-        <p class="subtitle">Cinematographer — Portfolio Design Options</p>
+    <div class="filter-tabs">
+        <a href="#" class="filter-tab active">film</a>
+        <a href="#" class="filter-tab">comercial</a>
+        <a href="#" class="filter-tab">contact</a>
+    </div>
 
+    <div class="movies-container">
+        <!-- Movie 1: Fragments (VIDEO) -->
+        <a href="fragments.html" class="movie-section">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="movie-title-overlay">Fragments</div>
+        </a>
 
+        <!-- Movie 2: Light & Shadow (GRID) -->
+        <a href="light-shadow.html" class="movie-section">
+            <div class="movie-grid">
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1518929458119-e5bf444c30f4?w=600&h=600&fit=crop" alt="Light & Shadow 1">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1509824227185-9c5a01ceba0d?w=600&h=600&fit=crop" alt="Light & Shadow 2">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1574437553126-7fc8e0bb0e1e?w=600&h=600&fit=crop" alt="Light & Shadow 3">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=600&h=600&fit=crop" alt="Light & Shadow 4">
+                </div>
+            </div>
+            <div class="movie-title-overlay">Light & Shadow</div>
+        </a>
 
-        <div class="designs">
+        <!-- Movie 3: Urban Stories (GRID) -->
+        <a href="urban-stories.html" class="movie-section">
+            <div class="movie-grid">
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=600&h=600&fit=crop" alt="Urban Stories 1">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&h=600&fit=crop" alt="Urban Stories 2">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&h=600&fit=crop" alt="Urban Stories 3">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=600&h=600&fit=crop" alt="Urban Stories 4">
+                </div>
+            </div>
+            <div class="movie-title-overlay">Urban Stories</div>
+        </a>
 
-            <a href="iteration3.html" class="design-card">
-                <span class="new-badge">New</span>
-                <div class="design-number">01</div>
-                <div class="design-title">mixed iteration</div>
-                <p class="design-description">Best of both — Combines video strips and picture grids with hover blur effects</p>
-            </a>
+        <!-- Movie 4: Horizon (VIDEO) -->
+        <a href="horizon.html" class="movie-section">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="movie-title-overlay">Horizon</div>
+        </a>
+        
 
-            <a href="design2.html" class="design-card">
-                <div class="design-number">02</div>
-                <div class="design-title">OG design</div>
-                <p class="design-description">Clean grid layout — Each movie in one horizontal row with title on top</p>
-            </a>
-
-            <a href="iteration1.html" class="design-card">
-                <div class="design-number">03</div>
-                <div class="design-title">first iteration</div>
-                <p class="design-description">Clean grid layout — Each movie in one horizontal row with hover interaction</p>
-            </a>
-
-            <a href="iteration2.html" class="design-card">
-                <div class="design-number">04</div>
-                <div class="design-title">video iteration</div>
-                <p class="design-description">Video strips — One looping video per movie with lazy loading and hover blur</p>
-            </a>
-
-            <a href="iteration2-b.html" class="design-card">
-                <div class="design-number">05</div>
-                <div class="design-title">video iteration (sticky)</div>
-                <p class="design-description">Same as 03 but with sticky navigation bar that stays at top while scrolling</p>
-            </a>
-
-
+        <!-- Movie 5: Noir (GRID) -->
+        <div class="movie-section">
+            <div class="movie-grid">
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=600&h=600&fit=crop" alt="Noir 1">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=600&fit=crop" alt="Noir 2">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=600&fit=crop" alt="Noir 3">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=600&h=600&fit=crop" alt="Noir 4">
+                </div>
+            </div>
+            <div class="movie-title-overlay">Noir</div>
         </div>
     </div>
+
+
+    <script>
+        // Lazy loading videos with Intersection Observer
+        const videos = document.querySelectorAll('video');
+
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+
+                if (entry.isIntersecting) {
+                    // Video is visible or about to be visible
+                    if (video.paused) {
+                        video.play().catch(err => {
+                            console.log('Autoplay prevented:', err);
+                        });
+                    }
+                } else {
+                    // Video is out of view - pause to save resources
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                }
+            });
+        }, {
+            // Start loading when video is within 200px of viewport
+            rootMargin: '200px',
+            threshold: 0.1
+        });
+
+        // Observe all videos
+        videos.forEach(video => {
+            videoObserver.observe(video);
+        });
+    </script>
 </body>
 </html>

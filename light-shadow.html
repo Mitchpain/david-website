@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light & Shadow - David</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --text-color: #ffffff;
+                --text-secondary: #999999;
+                --border-color: #222222;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-color);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-color);
+        }
+
+        /* Main Container - Design 2: Split Screen */
+        .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 80px);
+            gap: 0;
+        }
+
+        .video-side {
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            background: #000;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content-side {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 3rem;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+            max-width: 500px;
+        }
+
+        .credits {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .credit-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .credit-label {
+            color: var(--text-secondary);
+            min-width: 120px;
+            letter-spacing: 0.05em;
+        }
+
+        .credit-value {
+            color: var(--text-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .split-container {
+                grid-template-columns: 1fr;
+            }
+
+            .video-side {
+                position: relative;
+                top: 0;
+                height: 50vh;
+            }
+
+            .content-side {
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-link">← back</a>
+        <a href="#" class="back-link">contact</a>
+    </div>
+
+    <div class="split-container">
+        <div class="video-side">
+            <div class="video-container">
+                <iframe src="https://player.vimeo.com/video/76979871?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="content-side">
+            <h1 class="title">Light & Shadow</h1>
+            <div class="meta">2023 · Documentary · 18 min</div>
+            <p class="description">
+                An intimate portrait of three architects exploring the relationship between natural light and urban spaces. Through observational cinematography and minimal interviews, the film reveals how light shapes our perception of the built environment and influences human behavior in architectural contexts.
+            </p>
+
+            <div class="credits">
+                <div class="credit-item">
+                    <span class="credit-label">Director</span>
+                    <span class="credit-value">David Smith</span>
+                </div>
+                <div class="credit-item">
+                    <span class="credit-label">Producer</span>
+                    <span class="credit-value">Sarah Johnson</span>
+                </div>
+                <div class="credit-item">
+                    <span class="credit-label">Editor</span>
+                    <span class="credit-value">Mark Chen</span>
+                </div>
+                <div class="credit-item">
+                    <span class="credit-label">Sound Design</span>
+                    <span class="credit-value">Emma Wilson</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+</body>
+</html>
