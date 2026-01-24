@@ -158,3 +158,34 @@ Site is designed to be hosted on GitHub Pages. See README.md for deployment inst
 - Prioritize visual impact and responsiveness
 - All text content and images are placeholders
 - All five designs support light/dark theme based on user's system preference
+
+## Development with Bun (website/ folder)
+
+The `website/` folder contains a dynamic version of the portfolio using Bun, Lit, and TypeScript.
+
+### Bun Commands
+
+Default to using Bun instead of Node.js:
+
+- Use `bun <file>` instead of `node <file>` or `ts-node <file>`
+- Use `bun test` instead of `jest` or `vitest`
+- Use `bun install` instead of `npm install` or `yarn install` or `pnpm install`
+- Use `bun run <script>` instead of `npm run <script>` or `yarn run <script>` or `pnpm run <script>`
+- Use `bunx <package> <command>` instead of `npx <package> <command>`
+- Bun automatically loads .env, so don't use dotenv
+
+### Bun APIs
+
+- `Bun.serve()` supports WebSockets, HTTPS, and routes. Don't use `express`
+- `bun:sqlite` for SQLite. Don't use `better-sqlite3`
+- `WebSocket` is built-in. Don't use `ws`
+- Prefer `Bun.file` over `node:fs`'s readFile/writeFile
+- Bun.$`ls` instead of execa
+
+### Website Development
+
+See `website/README.md` for detailed instructions on:
+- Running the dev server with hot reload (`bun run start`)
+- Building for production (`bun run build`)
+- Creating Lit components
+- Project structure
