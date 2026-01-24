@@ -1,0 +1,47 @@
+:host {
+  display: block;
+}
+
+.filter-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-color);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+@media (min-width: 1000px) {
+  .filter-tabs {
+    padding: 1.5rem 3rem;
+  }
+}
+
+.filter-tab {
+  padding: 0.5rem 0;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-tab:hover,
+.filter-tab.active {
+  color: var(--text-color);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .filter-tabs {
+    gap: 1rem;
+  }
+
+  .filter-tab {
+    font-size: 0.7rem;
+  }
+}

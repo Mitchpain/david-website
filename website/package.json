@@ -1,0 +1,23 @@
+{
+  "name": "davie-portfolio",
+  "version": "1.0.0",
+  "description": "Dynamic cinematographer portfolio using Bun, Lit, and TypeScript",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun --hot ./scripts/dev.ts",
+    "build": "bun ./scripts/build.ts",
+    "preview": "bun --hot ./dist/index.html"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^25.0.10",
+    "esbuild": "^0.27.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "lit": "^3.3.2"
+  }
+}

@@ -1,0 +1,46 @@
+:host {
+  display: block;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 1;
+  background: var(--grid-bg, #f5f5f5);
+  overflow: hidden;
+}
+
+.video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s ease;
+}
+
+:host(:hover) .video-container video {
+  filter: blur(3px);
+}
+
+:host(:hover) .video-container::after {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .video-container {
+    aspect-ratio: 2 / 1;
+  }
+}

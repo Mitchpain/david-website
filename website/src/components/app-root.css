@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+/* Movies Container */
+.movies-container {
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 1000px) {
+  .movies-container {
+    padding: 0 3rem;
+  }
+}
