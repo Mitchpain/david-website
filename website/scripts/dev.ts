@@ -44,9 +44,33 @@ const server = Bun.serve({
       return new Response('WebSocket upgrade failed', { status: 500 });
     }
 
-    // Default to index.html
-    if (path === '/') {
-      path = '/index.html';
+    // Helper function to serve index.html with hot reload
+    async function serveIndexHtml() {
+      const file = Bun.file(join(publicDir, 'index.html'));
+      if (await file.exists()) {
+        let html = await file.text();
+        const hotReloadScript = `
+<script>
+  (function() {
+    const ws = new WebSocket('ws://localhost:${PORT}/__hmr');
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 'reload') {
+        console.log('🔄 Hot reload triggered');
+        location.reload();
+      }
+    };
+    ws.onopen = () => console.log('🔌 Hot reload connected');
+    ws.onerror = () => console.log('❌ Hot reload disconnected');
+  })();
+</script>
+</body>`;
+        html = html.replace('</body>', hotReloadScript);
+        return new Response(html, {
+          headers: { 'Content-Type': 'text/html' },
+        });
+      }
+      return new Response('index.html not found', { status: 404 });
     }
 
     // Serve from public directory for HTML
@@ -78,8 +102,11 @@ const server = Bun.serve({
       }
     }
 
+    // Check if this is a file request (has extension) or a SPA route (no extension)
+    const hasExtension = /\.[a-zA-Z0-9]+$/.test(path);
+
     // Serve TypeScript/JavaScript files - bundle on the fly
-    if (path.endsWith('.js') || path.endsWith('.ts')) {
+    if (hasExtension && (path.endsWith('.js') || path.endsWith('.ts'))) {
       const entryPoint = path === '/index.js' ? join(srcDir, 'index.ts') : join(srcDir, path);
 
       try {
@@ -109,7 +136,7 @@ const server = Bun.serve({
     }
 
     // Serve CSS files
-    if (path.endsWith('.css')) {
+    if (hasExtension && path.endsWith('.css')) {
       const file = Bun.file(join(srcDir, path));
       if (await file.exists()) {
         return new Response(file, {
@@ -118,7 +145,9 @@ const server = Bun.serve({
       }
     }
 
-    return new Response('Not found', { status: 404 });
+    // SPA fallback - serve index.html for all routes without extensions
+    // This allows client-side routing to work
+    return serveIndexHtml();
   },
 
   websocket: {
