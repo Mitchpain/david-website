@@ -51,4 +51,10 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 0;
   }
+
+  /* Hide 3rd and 4th images on mobile */
+  .grid-item:nth-child(3),
+  .grid-item:nth-child(4) {
+    display: none;
+  }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fragments - David</title>
+    <title>Found Me - David</title>
     <style>
         * {
             margin: 0;
@@ -44,6 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .back-link {
@@ -59,100 +60,106 @@
             color: var(--text-color);
         }
 
-        /* Main Container - Design 1: Centered/Minimal - One Page */
-        .container {
-            height: calc(100vh - 80px);
+        /* Video Section - Sticky */
+        .video-section {
+            position: sticky;
+            top: 68px;
+            z-index: 50;
+            background: var(--bg-color);
+            padding: 3rem 2rem;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            padding: 2rem;
-            gap: 3rem;
-        }
-
-        .video-wrapper {
-            width: 100%;
-            max-width: 900px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .video-container {
-            position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            max-width: 863px;
             background: #000;
+            aspect-ratio: 16 / 9;
         }
 
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
         }
 
+        /* Content Section - Scrollable */
         .content {
-            max-width: 700px;
-            text-align: center;
+            max-width: 863px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
         }
 
         .title {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 300;
             letter-spacing: 0.05em;
-            margin-bottom: 1rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
         }
 
-        .meta {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
+        .credits {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .description {
+        .credit-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .credit-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            letter-spacing: 0.01em;
+        }
+
+        .credit-value {
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+            color: var(--text-color);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                gap: 2rem;
-                padding: 1.5rem;
+            .header {
+                padding: 1rem 1.5rem;
             }
 
-            .title {
-                font-size: 1.8rem;
-            }
-
-            .description {
-                font-size: 0.85rem;
+            .video-section {
+                top: 56px;
+                padding: 2rem 1rem;
             }
 
             .content {
-                text-align: left;
-            }
-        }
-
-        @media (max-height: 700px) {
-            .container {
-                gap: 1.5rem;
+                padding: 2.5rem 1.5rem 5rem;
             }
 
             .title {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
+                font-size: 1.25rem;
+                margin-bottom: 2rem;
             }
 
-            .meta {
-                margin-bottom: 1rem;
+            .credits {
+                gap: 0.875rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-section {
+                padding: 1.5rem 0.75rem;
             }
 
-            .description {
-                font-size: 0.85rem;
-                line-height: 1.5;
+            .content {
+                padding: 2rem 1.25rem 4rem;
+            }
+
+            .title {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -163,19 +170,75 @@
         <a href="#" class="back-link">contact</a>
     </div>
 
-    <div class="container">
-        <div class="video-wrapper">
-            <div class="video-container">
-                <iframe src="https://player.vimeo.com/video/491339383?background=1&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-            </div>
+    <div class="video-section">
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/491339383?app_id=122963&wmode=opaque" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="Found Me"></iframe>
         </div>
+    </div>
 
-        <div class="content">
-            <h1 class="title">Fragments</h1>
-            <div class="meta">2024 · Narrative · 12 min</div>
-            <p class="description">
-                A contemplative exploration of memory and time, following a photographer as she pieces together fragments of her past. Shot on location in Montreal, this short film combines documentary aesthetics with experimental narrative techniques to create an intimate portrait of loss and remembrance.
-            </p>
+    <div class="content">
+        <h1 class="title">Found Me</h1>
+
+        <div class="credits">
+            <div class="credit-item">
+                <div class="credit-label">Réalisateur</div>
+                <div class="credit-value">Davidoff</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur Photo</div>
+                <div class="credit-value">David [Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Acteur Principal</div>
+                <div class="credit-value">Michel Poudrier</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Producteur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Producteur Exécutif</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Premier Assistant Réalisateur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Scénariste</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Monteur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur Artistique</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Opérateur Son</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Compositeur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Costumier</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
         </div>
     </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urban Stories - David</title>
+    <title>Found Me - David</title>
     <style>
         * {
             margin: 0;
@@ -44,6 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .back-link {
@@ -59,110 +60,118 @@
             color: var(--text-color);
         }
 
-        /* Main Container - Design 3: Full Width Hero */
-        .hero-section {
-            width: 100%;
-            height: 70vh;
-            background: #000;
-            position: relative;
+        /* Video Section - Sticky */
+        .video-section {
+            position: sticky;
+            top: 68px;
+            z-index: 50;
+            background: var(--bg-color);
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .video-container {
-            position: relative;
             width: 100%;
-            height: 100%;
+            max-width: 863px;
+            background: #000;
+            aspect-ratio: 16 / 9;
         }
 
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
         }
 
-        .content-section {
-            padding: 8rem 2rem;
-            max-width: 900px;
+        /* Content Section - Scrollable */
+        .content {
+            max-width: 600px;
             margin: 0 auto;
-        }
-
-        .title-block {
-            text-align: center;
-            margin-bottom: 6rem;
+            padding: 3.5rem 2rem 6rem;
         }
 
         .title {
-            font-size: 3.5rem;
+            font-size: 1.5rem;
             font-weight: 300;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
+            letter-spacing: 0.12em;
+            margin-bottom: 3rem;
+            text-align: center;
+            text-transform: uppercase;
         }
 
-        .meta {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: lowercase;
+        .credits {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
-        .description-block {
-            margin-bottom: 6rem;
+        .credit-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.875rem 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .description {
-            color: var(--text-color);
-            font-size: 1.2rem;
-            line-height: 2;
-            letter-spacing: 0.01em;
-            text-align: justify;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            padding-top: 4rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .info-item h3 {
-            font-size: 0.75rem;
-            font-weight: 400;
-            letter-spacing: 0.1em;
+        .credit-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--text-secondary);
-            margin-bottom: 1rem;
         }
 
-        .info-item p {
-            font-size: 1rem;
+        .credit-value {
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
             color: var(--text-color);
-            line-height: 1.6;
+            text-align: right;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-section {
-                height: 50vh;
+            .header {
+                padding: 1rem 1.5rem;
             }
 
-            .content-section {
-                padding: 4rem 1.5rem;
+            .video-section {
+                top: 56px;
+                padding: 2rem 1rem;
+            }
+
+            .content {
+                padding: 3rem 1.5rem 5rem;
             }
 
             .title {
-                font-size: 2rem;
+                font-size: 1.25rem;
+                margin-bottom: 2.5rem;
             }
 
-            .description {
-                font-size: 1rem;
+            .credit-item {
+                flex-direction: column;
+                gap: 0.35rem;
+                align-items: flex-start;
+                padding: 0.75rem 0;
+            }
+
+            .credit-value {
                 text-align: left;
             }
+        }
 
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+        @media (max-width: 480px) {
+            .video-section {
+                padding: 1.5rem 0.75rem;
+            }
+
+            .content {
+                padding: 2.5rem 1.25rem 4rem;
+            }
+
+            .title {
+                font-size: 1.1rem;
+                letter-spacing: 0.1em;
             }
         }
     </style>
@@ -173,42 +182,104 @@
         <a href="#" class="back-link">contact</a>
     </div>
 
-    <div class="hero-section">
+    <div class="video-section">
         <div class="video-container">
-            <iframe src="https://player.vimeo.com/video/76979871?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://player.vimeo.com/video/491339383?app_id=122963&wmode=opaque" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="Found Me"></iframe>
         </div>
     </div>
 
-    <div class="content-section">
-        <div class="title-block">
-            <h1 class="title">Urban Stories</h1>
-            <div class="meta">2023 · narrative · 22 min</div>
-        </div>
+    <div class="content">
+        <h1 class="title">Found Me</h1>
 
-        <div class="description-block">
-            <p class="description">
-                Set against the backdrop of a rapidly changing city, Urban Stories weaves together three interconnected narratives exploring themes of displacement, belonging, and urban transformation. Through the lives of a street photographer, a construction worker, and a late-night taxi driver, the film captures the pulse of contemporary urban life and the human stories often overlooked in the rush of modern development.
-            </p>
-        </div>
+        <div class="credits">
+            <div class="credit-item">
+                <div class="credit-label">Réalisateur</div>
+                <div class="credit-value">Davidoff</div>
+            </div>
 
-        <div class="info-grid">
-            <div class="info-item">
-                <h3>Festival</h3>
-                <p>Toronto International Film Festival<br>
-                Hot Docs 2023<br>
-                Visions du Réel</p>
+            <div class="credit-item">
+                <div class="credit-label">Directeur Photo</div>
+                <div class="credit-value">David [Placeholder]</div>
             </div>
-            <div class="info-item">
-                <h3>Awards</h3>
-                <p>Best Cinematography<br>
-                Audience Choice Award<br>
-                Special Jury Mention</p>
+
+            <div class="credit-item">
+                <div class="credit-label">Acteur Principal</div>
+                <div class="credit-value">Michel Poudrier</div>
             </div>
-            <div class="info-item">
-                <h3>Technical</h3>
-                <p>Shot on ARRI Alexa Mini<br>
-                Anamorphic Lenses<br>
-                4K DCI</p>
+
+            <div class="credit-item">
+                <div class="credit-label">Producteur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Producteur Exécutif</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Premier Assistant Réalisateur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Scénariste</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Monteur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur Artistique</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Opérateur Son</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Compositeur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Costumier</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Décorateur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Maquilleur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Électricien</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur de Production</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Assistant Caméra</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Ingénieur du Son</div>
+                <div class="credit-value">[Placeholder]</div>
             </div>
         </div>
     </div>
