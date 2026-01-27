@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizon - David</title>
+    <title>Found Me - David</title>
     <style>
         * {
             margin: 0;
@@ -16,7 +16,6 @@
             --text-color: #000000;
             --text-secondary: #666666;
             --border-color: #e0e0e0;
-            --overlay-bg: rgba(255, 255, 255, 0.95);
         }
 
         @media (prefers-color-scheme: dark) {
@@ -25,7 +24,6 @@
                 --text-color: #ffffff;
                 --text-secondary: #999999;
                 --border-color: #222222;
-                --overlay-bg: rgba(0, 0, 0, 0.95);
             }
         }
 
@@ -46,6 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .back-link {
@@ -61,157 +60,128 @@
             color: var(--text-color);
         }
 
-        /* Main Container - Design 4: Asymmetric Layout */
-        .asymmetric-container {
-            display: grid;
-            grid-template-columns: 60% 40%;
-            min-height: calc(100vh - 80px);
-        }
-
-        .video-column {
-            background: #000;
-            padding: 3rem;
+        /* Video Section - Sticky */
+        .video-section {
+            position: sticky;
+            top: 68px;
+            z-index: 50;
+            background: var(--bg-color);
+            padding: 3rem 2rem;
             display: flex;
-            align-items: center;
-        }
-
-        .video-wrapper {
-            width: 100%;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .video-container {
-            position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
+            max-width: 863px;
             background: #000;
+            aspect-ratio: 16 / 9;
         }
 
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
         }
 
-        .info-column {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .top-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* Content Section - Scrollable */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
         }
 
         .title {
-            font-size: 4rem;
+            font-size: 2.25rem;
             font-weight: 200;
-            letter-spacing: 0.02em;
-            margin-bottom: 2rem;
-            line-height: 1;
+            letter-spacing: 0.18em;
+            margin-bottom: 4rem;
+            text-align: center;
         }
 
-        .meta-line {
+        .credits {
             display: flex;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-        }
-
-        .description {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-        }
-
-        .quote-block {
-            border-left: 2px solid var(--text-color);
-            padding-left: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .quote {
-            font-size: 1.1rem;
-            font-style: italic;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        .quote-author {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.05em;
-        }
-
-        .bottom-content {
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .specs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            flex-direction: column;
             gap: 1.5rem;
         }
 
-        .spec-item {
-            font-size: 0.8rem;
+        .credit-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: baseline;
         }
 
-        .spec-label {
+        .credit-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
             color: var(--text-secondary);
-            letter-spacing: 0.05em;
-            margin-bottom: 0.3rem;
         }
 
-        .spec-value {
+        .credit-value {
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
             color: var(--text-color);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .asymmetric-container {
-                grid-template-columns: 1fr;
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
             }
 
-            .video-column {
-                padding: 2rem;
+            .video-section {
+                top: 56px;
+                padding: 2rem 1rem;
             }
 
-            .info-column {
-                padding: 2rem;
+            .content {
+                padding: 3rem 1.5rem 5rem;
             }
 
             .title {
-                font-size: 2.5rem;
+                font-size: 1.6rem;
+                letter-spacing: 0.12em;
+                margin-bottom: 3rem;
+            }
+
+            .credits {
+                gap: 1.25rem;
+            }
+
+            .credit-item {
+                grid-template-columns: 1fr;
+                gap: 0.3rem;
+            }
+
+            .credit-value {
+                font-size: 0.8rem;
             }
         }
 
-        @media (max-width: 768px) {
-            .video-column {
-                padding: 1rem;
+        @media (max-width: 480px) {
+            .video-section {
+                padding: 1.5rem 0.75rem;
             }
 
-            .info-column {
-                padding: 1.5rem;
+            .content {
+                padding: 2.5rem 1.25rem 4rem;
             }
 
             .title {
-                font-size: 2rem;
+                font-size: 1.3rem;
+                letter-spacing: 0.1em;
+                margin-bottom: 2.5rem;
             }
 
-            .meta-line {
-                flex-direction: column;
-                gap: 0.5rem;
+            .credits {
+                gap: 1rem;
+            }
+
+            .credit-value {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -222,56 +192,114 @@
         <a href="#" class="back-link">contact</a>
     </div>
 
-    <div class="asymmetric-container">
-        <div class="video-column">
-            <div class="video-wrapper">
-                <div class="video-container">
-                    <iframe src="https://player.vimeo.com/video/76979871?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
+    <div class="video-section">
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/491339383?app_id=122963&wmode=opaque" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="Found Me"></iframe>
         </div>
+    </div>
 
-        <div class="info-column">
-            <div class="top-content">
-                <h1 class="title">Horizon</h1>
+    <div class="content">
+        <h1 class="title">Found Me</h1>
 
-                <div class="meta-line">
-                    <span>2024</span>
-                    <span>Commercial</span>
-                    <span>90 sec</span>
-                </div>
-
-                <p class="description">
-                    A visually stunning commercial piece created for an environmental nonprofit, exploring humanity's relationship with the natural world. The film juxtaposes sweeping landscape cinematography with intimate moments of human connection to nature, building toward a powerful call to action for environmental conservation.
-                </p>
-
-                <div class="quote-block">
-                    <p class="quote">
-                        "A masterclass in visual storytelling. Every frame is meticulously composed to evoke emotion and inspire action."
-                    </p>
-                    <p class="quote-author">— Film Quarterly</p>
-                </div>
+        <div class="credits">
+            <div class="credit-item">
+                <div class="credit-label">Réalisateur</div>
+                <div class="credit-value">Davidoff</div>
             </div>
 
-            <div class="bottom-content">
-                <div class="specs">
-                    <div class="spec-item">
-                        <div class="spec-label">Client</div>
-                        <div class="spec-value">Green Earth Coalition</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Agency</div>
-                        <div class="spec-value">Studio Nord</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Camera</div>
-                        <div class="spec-value">RED Komodo 6K</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Location</div>
-                        <div class="spec-value">Iceland, Norway</div>
-                    </div>
-                </div>
+            <div class="credit-item">
+                <div class="credit-label">Directeur Photo</div>
+                <div class="credit-value">David [Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Acteur Principal</div>
+                <div class="credit-value">Michel Poudrier</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Producteur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Producteur Exécutif</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Premier Assistant Réalisateur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Scénariste</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Monteur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur Artistique</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Opérateur Son</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Compositeur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Costumier</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Décorateur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Maquilleur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Électricien</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur de Production</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Assistant Caméra</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Ingénieur du Son</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Étalonnage</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Mixage Son</div>
+                <div class="credit-value">[Placeholder]</div>
             </div>
         </div>
     </div>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David - Contact (Model 1)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --link-color: #000000;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --text-color: #ffffff;
+                --text-secondary: #999999;
+                --border-color: #333333;
+                --link-color: #ffffff;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .filter-tabs {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-color);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: flex-start;
+            gap: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-tab {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            color: var(--text-color);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+        }
+
+        .name {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .bio {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: var(--link-color);
+            text-decoration: underline;
+            font-size: 0.95rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .contact-links a:hover {
+            opacity: 0.6;
+        }
+
+        .photo {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 3rem;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-list a {
+            color: var(--link-color);
+            text-decoration: underline;
+            transition: opacity 0.2s ease;
+        }
+
+        .contact-list a:hover {
+            opacity: 0.6;
+        }
+
+        .contact-list .location {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .awards-list {
+            list-style: none;
+        }
+
+        .awards-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .awards-list .award-year {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .filter-tabs {
+                padding: 1rem 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 2rem 1.5rem 4rem;
+            }
+
+            .photo {
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            .section {
+                margin-bottom: 2.5rem;
+            }
+
+            .contact-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-tabs {
+                gap: 1rem;
+            }
+
+            .filter-tab {
+                font-size: 0.7rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            .name,
+            .bio,
+            .section-title {
+                font-size: 0.95rem;
+            }
+
+            .contact-links a,
+            .contact-list li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="filter-tabs">
+        <a href="#" class="filter-tab">film</a>
+        <a href="#" class="filter-tab">comercial</a>
+        <a href="#" class="filter-tab active">contact</a>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← back to models</a>
+
+        <div class="header">
+            <h1 class="name">David</h1>
+            <p class="bio">David is a cinematographer and director of photography based in Montreal.</p>
+            <div class="contact-links">
+                <a href="mailto:david@example.com">Email</a>
+                <a href="https://instagram.com/david" target="_blank">Instagram</a>
+                <a href="#">[Contact]</a>
+            </div>
+        </div>
+
+        <div class="photo">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop" alt="David">
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Representation</h2>
+            <ul class="contact-list">
+                <li>
+                    <a href="#">Production Company</a>
+                    <span class="location">[Canada]</span>
+                </li>
+                <li>
+                    <a href="#">Studio Partners</a>
+                    <span class="location">[US & UK]</span>
+                </li>
+                <li>
+                    <a href="#">Creative Agency</a>
+                    <span class="location">[Europe]</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Film Festivals</h2>
+            <ul class="awards-list">
+                <li>Cannes Film Festival <span class="award-year">[2024]</span></li>
+                <li>Sundance Film Festival <span class="award-year">[2023]</span></li>
+                <li>Toronto International Film Festival <span class="award-year">[2023]</span></li>
+                <li>Berlin International Film Festival <span class="award-year">[2022]</span></li>
+                <li>Venice Film Festival <span class="award-year">[2022]</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Awards</h2>
+            <ul class="awards-list">
+                <li>Best Cinematography Award <span class="award-year">[Festival Name 2024]</span></li>
+                <li>Excellence in Visual Storytelling <span class="award-year">[Award Show 2023]</span></li>
+                <li>Outstanding Achievement in Cinematography <span class="award-year">[Guild Awards 2023]</span></li>
+                <li>Best Short Film Cinematography <span class="award-year">[Festival 2022]</span></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

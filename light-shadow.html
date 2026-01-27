@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light & Shadow - David</title>
+    <title>Found Me - David</title>
     <style>
         * {
             margin: 0;
@@ -32,7 +32,6 @@
             background: var(--bg-color);
             color: var(--text-color);
             transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
         }
 
         /* Header */
@@ -45,6 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .back-link {
@@ -60,105 +60,106 @@
             color: var(--text-color);
         }
 
-        /* Main Container - Design 2: Split Screen */
-        .split-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: calc(100vh - 80px);
-            gap: 0;
-        }
-
-        .video-side {
+        /* Video Section - Sticky */
+        .video-section {
             position: sticky;
-            top: 80px;
-            height: calc(100vh - 80px);
-            background: #000;
+            top: 68px;
+            z-index: 50;
+            background: var(--bg-color);
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .video-container {
-            position: relative;
             width: 100%;
-            height: 100%;
+            max-width: 863px;
+            background: #000;
+            aspect-ratio: 16 / 9;
         }
 
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
         }
 
-        .content-side {
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* Content Section - Scrollable */
+        .content {
+            max-width: 863px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
         }
 
         .title {
-            font-size: 3rem;
+            font-size: 1.75rem;
             font-weight: 300;
             letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
-
-        .meta {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            margin-bottom: 3rem;
-        }
-
-        .description {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            letter-spacing: 0.01em;
-            max-width: 500px;
+            margin-bottom: 2.5rem;
         }
 
         .credits {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem 2.5rem;
         }
 
         .credit-item {
             display: flex;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            flex-direction: column;
+            gap: 0.2rem;
         }
 
         .credit-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
             color: var(--text-secondary);
-            min-width: 120px;
-            letter-spacing: 0.05em;
         }
 
         .credit-value {
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
             color: var(--text-color);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .split-container {
-                grid-template-columns: 1fr;
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
             }
 
-            .video-side {
-                position: relative;
-                top: 0;
-                height: 50vh;
+            .video-section {
+                top: 56px;
+                padding: 2rem 1rem;
             }
 
-            .content-side {
-                padding: 2rem 1.5rem;
+            .content {
+                padding: 2.5rem 1.5rem 5rem;
             }
 
             .title {
-                font-size: 2rem;
+                font-size: 1.4rem;
+                margin-bottom: 2rem;
+            }
+
+            .credits {
+                grid-template-columns: 1fr;
+                gap: 0.875rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-section {
+                padding: 1.5rem 0.75rem;
+            }
+
+            .content {
+                padding: 2rem 1.25rem 4rem;
+            }
+
+            .title {
+                font-size: 1.25rem;
             }
         }
     </style>
@@ -169,37 +170,94 @@
         <a href="#" class="back-link">contact</a>
     </div>
 
-    <div class="split-container">
-        <div class="video-side">
-            <div class="video-container">
-                <iframe src="https://player.vimeo.com/video/76979871?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-            </div>
+    <div class="video-section">
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/491339383?app_id=122963&wmode=opaque" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="Found Me"></iframe>
         </div>
+    </div>
 
-        <div class="content-side">
-            <h1 class="title">Light & Shadow</h1>
-            <div class="meta">2023 · Documentary · 18 min</div>
-            <p class="description">
-                An intimate portrait of three architects exploring the relationship between natural light and urban spaces. Through observational cinematography and minimal interviews, the film reveals how light shapes our perception of the built environment and influences human behavior in architectural contexts.
-            </p>
+    <div class="content">
+        <h1 class="title">Found Me</h1>
 
-            <div class="credits">
-                <div class="credit-item">
-                    <span class="credit-label">Director</span>
-                    <span class="credit-value">David Smith</span>
-                </div>
-                <div class="credit-item">
-                    <span class="credit-label">Producer</span>
-                    <span class="credit-value">Sarah Johnson</span>
-                </div>
-                <div class="credit-item">
-                    <span class="credit-label">Editor</span>
-                    <span class="credit-value">Mark Chen</span>
-                </div>
-                <div class="credit-item">
-                    <span class="credit-label">Sound Design</span>
-                    <span class="credit-value">Emma Wilson</span>
-                </div>
+        <div class="credits">
+            <div class="credit-item">
+                <div class="credit-label">Réalisateur</div>
+                <div class="credit-value">Davidoff</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur Photo</div>
+                <div class="credit-value">David [Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Acteur Principal</div>
+                <div class="credit-value">Michel Poudrier</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Producteur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Producteur Exécutif</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Premier Assistant Réalisateur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Scénariste</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Monteur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur Artistique</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Opérateur Son</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Compositeur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Costumier</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Décorateur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Maquilleur</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Chef Électricien</div>
+                <div class="credit-value">[Placeholder]</div>
+            </div>
+
+            <div class="credit-item">
+                <div class="credit-label">Directeur de Production</div>
+                <div class="credit-value">[Placeholder]</div>
             </div>
         </div>
     </div>
